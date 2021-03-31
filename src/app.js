@@ -1,38 +1,41 @@
 import React from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
-import Main from "./main";
+import { BrowserRouter, Route } from "react-router-dom";
+import { useSelector } from "react-redux";
+import MainBusiness from "./mainBusiness";
+import MainFlood from "./mainFlood";
 import Header from "./header";
 import Navbar from "./navbar";
-import Input from './input'
+import Input from "./input";
 import Login from "./login";
 
 const App = () => {
+  const isLog = useSelector((s) => (s.authReducer))
 
-  const auth = 1;
-
-    if (auth !== 1) {
-      return (
+  if (isLog) {
+    return (
       <BrowserRouter>
-          <div className="flex">
-            <Navbar />
-            <div className="w-full flex flex-col">
-              <Header />
-              <Switch>
-                <Route exact path="/main" render={() => <Main />} />
-              </Switch>
-              <Input />
-            </div>
+        <div className="flex">
+          <Navbar />
+          <div className="w-full flex flex-col">
+            <Header />
+            <Route exact path="/business" component={() => <MainBusiness />} />
+            <Route exact path="/flood" component={() => <MainFlood />} />
+            <Input />
           </div>
-        </BrowserRouter>
-      )} else {
-      return (
-        <Login />
-      );
-    };
+        </div>
+      </BrowserRouter>
+    );
+  } else {
+    return (
+      // <BrowserRouter>
+      <Login />
+      // </BrowserRouter>
+    );
+  }
 };
 
 export function loginAuth(obj) {
   return obj;
-};
+}
 
 export default App;

@@ -1,8 +1,10 @@
-import { createStore, combineReducers } from 'react'
+import { createStore, combineReducers } from 'redux'
 import authReducer from './authReducer'
+import messageReducer from './messageReducer'
 
 const reducers = combineReducers({
-  authReducer
+  authReducer,
+  messageReducer
 })
 
 const store = createStore(reducers)
