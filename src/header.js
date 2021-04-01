@@ -10,14 +10,14 @@ const Header = () => {
           className="border rounded h-8 w-56 m-2 px-2 bg-green-400"
         >
           <Link to="/business">
-          Деловой чат
+          Деловой чат!
           </Link>
         </button>
         <button
           className="border rounded h-8 w-56 m-2 px-2 bg-green-400"
         >
           <Link to="/flood">
-          Корпоративная флудилка
+          Флудилка!
           </Link>
         </button>
       </div>

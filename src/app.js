@@ -10,6 +10,7 @@ import Login from "./login";
 
 const App = () => {
   const isLog = useSelector((s) => (s.authReducer))
+  const { editMessage} = useSelector((s => s.messageReducer))
 
   if (isLog) {
     return (
@@ -18,18 +19,28 @@ const App = () => {
           <Navbar />
           <div className="w-full flex flex-col">
             <Header />
-            <Route exact path="/business" component={() => <MainBusiness />} />
-            <Route exact path="/flood" component={() => <MainFlood />} />
-            <Input />
+            <Route
+              exact
+              path="/business"
+              render={() => (
+                <MainBusiness
+                  editMessage={editMessage}
+                />
+              )}
+            />
+            <Route
+              exact
+              path="/flood"
+              render={() => <MainFlood editMessage={editMessage} />}
+            />
+            <Input editMessage={editMessage} />
           </div>
         </div>
       </BrowserRouter>
     );
   } else {
     return (
-      // <BrowserRouter>
       <Login />
-      // </BrowserRouter>
     );
   }
 };

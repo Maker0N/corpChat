@@ -23,7 +23,7 @@ const Login = () => {
         />
         <input
           className="border ml-2 pl-2"
-          type="text"
+          type="password"
           placeholder="пароль"
           onChange={(e) =>
             setInputLogPas({ ...inputLogPas, password: e.target.value })

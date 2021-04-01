@@ -9,12 +9,13 @@ let base = {
   currentAuthLogin: { login: "", password: "" },
   authLogins: [
     { login: "x12", password: "345" },
-    { login: "atlas", password: "atlas" },
+    { login: "zzz", password: "xxx" },
   ],
   collegs: [
     { name: "Elon Mask", isOnline: 1 },
     { name: "Steve Jobs", isOnline: 0 },
-    { name: "Dan Abramov", isOnline: 1 }
+    { name: "Dan Abramov", isOnline: 1 },
+    { name: "Jeff Bezos", isOnline: 1 },
   ],
 };
 

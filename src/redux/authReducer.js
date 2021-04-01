@@ -6,7 +6,6 @@ let initialState = false;
 const authReducer = (state = initialState, action) => {
   switch (action.type) {
     case CURRENT_AUTH:
-      console.log(action.isLog)
       return (state = action.isLog);
     default:
       return state;
