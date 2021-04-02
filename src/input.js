@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { sendMessage } from "./redux/messageReducer";
 import { sendEditMessage } from "./redux/messageReducer";
 
 const Input = (props) => {
   const dispatch = useDispatch();
+  const { collegsMessages } = useSelector(s => s.messageReducer)
   const [message, setMessage] = useState("");
   const [editMessageState, setEditMessageState] = useState(
     props.editMessage.message
@@ -16,6 +17,11 @@ const Input = (props) => {
       setMessage("");
       setEditMessageState("");
   };
+  const randomIndex = Math.floor(
+    Math.random() * (Math.floor(collegsMessages.length) - Math.ceil(0))) +
+      Math.ceil(0)
+
+      console.log(randomIndex)
 
   return (
     <div className="fixed bottom-0 p-2 w-full">
@@ -33,7 +39,7 @@ const Input = (props) => {
                   pathname
                 )
               )
-            : message && dispatch(sendMessage(message, pathname));
+            : message && dispatch(sendMessage(message, collegsMessages[randomIndex], pathname));
           clearMessage(e);
         }}
       >

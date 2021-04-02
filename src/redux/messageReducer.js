@@ -14,6 +14,10 @@ const initialState = {
     "Где таски?",
     "Добрый день, коллеги!",
     "Всем пока!",
+    "Все на митинг!",
+    "Давайте по кофе)",
+    ":)",
+    "Шеф пришел"
   ],
 };
 
@@ -23,19 +27,20 @@ const messageReducer = (state = initialState, action) => {
       return action.chat === "/business"
         ? (state = {
             ...state,
-            business: [...state.business, action.message],
+            business: [...state.business, action.messages],
           })
         : (state = {
             ...state,
-            flood: [...state.flood, action.message],
+            flood: [...state.flood, action.messages],
           });
+
     case EDIT_MESSAGE:
-      return (action.chat === "/business"
+      return action.chat === "/business"
         ? (state = {
             ...state,
             editMessage: {
               ...state.editMessage,
-              message: state.business[action.index],
+              message: state.business[action.index].message,
               index: action.index,
             },
           })
@@ -43,16 +48,17 @@ const messageReducer = (state = initialState, action) => {
             ...state,
             editMessage: {
               ...state.editMessage,
-              message: state.flood[action.index],
+              message: state.flood[action.index].message,
               index: action.index,
             },
-          }));
+          });
+
     case SEND_EDIT_MESSAGE:
-      return (action.chat === "/business"
+      return action.chat === "/business"
         ? (state = {
             ...state,
             business: state.business.map((it, index) =>
-              index === action.index ? (it = action.message) : it
+              index === action.index ? ({...it, message: action.message}) : it
             ),
             editMessage: {
               ...state.editMessage,
@@ -63,14 +69,15 @@ const messageReducer = (state = initialState, action) => {
         : (state = {
             ...state,
             flood: state.flood.map((it, index) =>
-              index === action.index ? (it = action.message) : it
-            ),
+              index === action.index
+                ? ({...it, message: action.message}) : it
+                ),
             editMessage: {
               ...state.editMessage,
               message: "",
               index: null,
             },
-          }));
+          });
     case DELETE_MESSAGE:
       return action.chat === "/business"
         ? (state = {
@@ -88,8 +95,8 @@ const messageReducer = (state = initialState, action) => {
   }
 };
 
-export function sendMessage(message, chat) {
-  return { type: SEND_MESSAGE, message, chat };
+export function sendMessage(message, collegs, chat) {
+  return { type: SEND_MESSAGE, messages: { message, collegs }, chat };
 }
 
 export function editMessage(message, index, chat) {
@@ -97,7 +104,6 @@ export function editMessage(message, index, chat) {
 }
 
 export function sendEditMessage(message, index, chat) {
-  console.log(chat)
   return { type: SEND_EDIT_MESSAGE, message, index, chat };
 }
 

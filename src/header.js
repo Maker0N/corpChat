@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
-    <div className="bg-green-300 h-36">
+    <div className="w-full bg-green-300 h-36">
       <div className="flex justify-center">Корпоративный чат</div>
       <div className="flex justify-center">
         <button
