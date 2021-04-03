@@ -15,13 +15,16 @@ const MainFlood = (props) => {
         Флудилка!
       </div>
       {flood.map((it, index) => {
-        return <Message
-          colorIndex={colorIndex}
-          key={index}
-          messages={it}
-          index={index}
-          editMessage={props.editMessage}
-        />
+        return (
+          <Message
+            colorIndex={colorIndex}
+            key={index}
+            messages={it}
+            index={index}
+            editMessage={props.editMessage}
+            collegs={props.collegs}
+          />
+        );
       })}
     </div>
   );

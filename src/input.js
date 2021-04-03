@@ -21,8 +21,6 @@ const Input = (props) => {
     Math.random() * (Math.floor(collegsMessages.length) - Math.ceil(0))) +
       Math.ceil(0)
 
-      console.log(randomIndex)
-
   return (
     <div className="fixed bottom-0 p-2 w-full">
       <button

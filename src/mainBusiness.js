@@ -21,6 +21,7 @@ const MainBusiness = (props) => {
           messages={it}
           index={index}
           editMessage={props.editMessage}
+          collegs={props.collegs}
         />
       ))}
     </div>
